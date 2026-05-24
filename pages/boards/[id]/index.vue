@@ -1,11 +1,32 @@
 <script setup lang="ts">
 const route = useRoute()
+const router = useRouter()
 
 const boardId = route.params.id
 
 const { data: board, pending, error } = await useFetch(
   `http://localhost:8080/api/boards/${boardId}`
 )
+
+const deleteBoard = async () => {
+  const confirmed = confirm('정말 삭제하시겠습니까?')
+
+  if (!confirmed) {
+    return
+  }
+
+  try {
+    await $fetch(`http://localhost:8080/api/boards/${boardId}`, {
+      method: 'DELETE'
+    })
+
+    await router.push('/boards')
+  } catch (e) {
+    console.error(e)
+    alert('게시글 삭제 중 오류가 발생했습니다.')
+  }
+}
+
 </script>
 
 <template>
@@ -64,6 +85,15 @@ const { data: board, pending, error } = await useFetch(
         >
           수정
         </NuxtLink>
+
+         <button
+    type="button"
+    style="margin-left: 8px;"
+    @click="deleteBoard"
+  >
+    삭제
+  </button>
+
       </div>
     </div>
   </div>
