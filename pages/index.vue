@@ -7,5 +7,15 @@
     <NuxtLink to="/boards">
       게시판으로 이동
     </NuxtLink>
+
+     <div style="margin: 16px 0;">
+  <NuxtLink to="/boards/new">
+    글쓰기
+  </NuxtLink>
+</div>
+
   </div>
+
+ 
+
 </template>

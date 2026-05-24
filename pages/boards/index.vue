@@ -6,6 +6,12 @@ const { data, pending, error } = await useFetch('http://localhost:8080/api/board
   <div style="padding: 30px;">
     <h1>게시판</h1>
 
+    <div style="margin: 16px 0;">
+  <NuxtLink to="/boards/new">
+    글쓰기
+  </NuxtLink>
+</div>
+
     <NuxtLink to="/">
       홈으로
     </NuxtLink>
@@ -34,7 +40,11 @@ const { data, pending, error } = await useFetch('http://localhost:8080/api/board
       <tbody>
         <tr v-for="board in data.boards" :key="board.boardId">
           <td>{{ board.boardId }}</td>
-          <td>{{ board.title }}</td>
+          <td>
+            <NuxtLink :to="`/boards/${board.boardId}`">
+                {{ board.title }}
+            </NuxtLink>
+            </td>
           <td>{{ board.writer }}</td>
           <td>{{ board.createdAt }}</td>
           <td>{{ board.viewCount }}</td>
