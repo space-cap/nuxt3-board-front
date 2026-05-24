@@ -55,9 +55,16 @@ const { data: board, pending, error } = await useFetch(
         </tbody>
       </table>
 
-      <div style="margin-top: 20px;">
-        <NuxtLink to="/boards">목록으로</NuxtLink>
-      </div>
+     <div style="margin-top: 20px;">
+  <NuxtLink to="/boards">목록으로</NuxtLink>
+
+  <NuxtLink
+    :to="`/boards/${board.boardId}/edit`"
+    style="margin-left: 8px;"
+  >
+    수정
+  </NuxtLink>
+</div>
     </div>
   </div>
 </template>
