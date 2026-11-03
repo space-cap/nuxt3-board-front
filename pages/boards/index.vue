@@ -40,7 +40,8 @@ const { data, pending, error, refresh } = await useFetch<BoardListResponse>(
     query: {
       page,
       keyword
-    }
+    },
+    watch: false
   }
 )
 
